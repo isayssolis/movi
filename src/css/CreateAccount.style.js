@@ -42,3 +42,8 @@ export const textContainer = {
     top: '70%',
     width: '100%',
 }
+
+export const InputWidth = {
+    width:"50px",
+    height: "60px"
+}

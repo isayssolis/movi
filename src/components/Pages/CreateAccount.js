@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {bgAuto, bgDots, carText, containerAuto, p1, p2, textContainer, } from '../../css/CreateAccount.style'
 import {regexEmail} from "../../helpers/Regex";
 import {useNavigate} from "react-router-dom";
+import {AppContext} from "../Context/AppContext";
 
 const initialValues = {
     email: "",
@@ -20,6 +21,7 @@ const CreateAccount = () => {
     const [error, setError] = useState(errorValues);
     const [togglePass, setTogglePass] = useState(false);
     const navigate = useNavigate();
+    const [context, setContext] = useContext(AppContext);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -69,6 +71,7 @@ const CreateAccount = () => {
         }
         else return ''
     }
+
     const renderMessage= ()=>{
         if(error.name === 'phone'){
             if(error.message){
@@ -77,9 +80,14 @@ const CreateAccount = () => {
                         {error.message}
                     </div>
                 )
-            }
+            }else return <p className='small ms-3 text-light'>Número a 10 dígitos</p>
         }
         else return (<p className='small ms-3 text-light'>Número a 10 dígitos</p>)
+    }
+
+    const navigateSuccess = () =>{
+        setContext(values);
+        navigate("/create-account/confirm");
     }
 
     return(
@@ -93,7 +101,7 @@ const CreateAccount = () => {
                                     <h1>Crear cuenta</h1>
                                     <p>Te damos la bienvenida a la forma más fácil y accesible de estrenar un auto</p>
                                 </div>
-                                <form action="" autoComplete="off">
+                                <form autoComplete="off">
                                     <div className="input-group input-group-lg mb-4">
                                         <input type="text" className={`form-control bg-light rounded ${renderAlert('email')}`}
                                                placeholder='Correo electrónico'
@@ -135,7 +143,7 @@ const CreateAccount = () => {
                                         </div>
                                     </div>
                                     <div className="d-grid">
-                                            <button className="btn btn-primary btn-lg" onClick={()=>{navigate("/create-account/confirm");}} type="button">Crear cuenta</button>
+                                            <button className="btn btn-primary btn-lg" onClick={navigateSuccess} type="button">Crear cuenta</button>
                                     </div>
                                 </form>
                             </div>
