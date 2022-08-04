@@ -96,7 +96,7 @@ const CreateAccount = () => {
                 <div className="col-lg-6">
                     <div className="container mt-5 fade-in">
                         <div className="row justify-content-md-center">
-                            <div className="col-sm-12 col-md-6 col-lg-6 mt-5">
+                            <div className="col-sm-12 col-md-6 col-lg-6 col-xl-5 col-xxl-4 mt-5">
                                 <div className="text-center bold">
                                     <h1>Crear cuenta</h1>
                                     <p>Te damos la bienvenida a la forma más fácil y accesible de estrenar un auto</p>

@@ -6,6 +6,7 @@ import NotFound from "./components/Pages/NotFound";
 import CreateAccountConfirm from "./components/Pages/CreateaccountConfirm";
 import {AppContext} from "./components/Context/AppContext";
 import Success from "./components/Pages/Success";
+import Onboarding from "./components/Pages/Onboarding";
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
                     <Route path="/create-account" element={<CreateAccount />} />
                     <Route path="/create-account/confirm" element={<CreateAccountConfirm/>} />
                     <Route path="/success" element={<Success/>} />
-                    <Route path="/onboarding" element={<CreateAccount />} />
+                    <Route path="/onboarding" element={<Onboarding/>} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </Router>

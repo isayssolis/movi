@@ -21,7 +21,7 @@ const Nav = () => {
                             <li className="nav-item">
                                 <NavLink to="/create-account"
                                          className={`${showExtra.dark ? 'text-white': ''}`}
-                                         style={styleNavLink}>Iniciar sesión</NavLink>
+                                         style={styleNavLink}>{`${showExtra.helpMenu ? '¿Necesitas ayuda?': 'Iniciar sesión'}`}</NavLink>
                             </li>
                         </ul>
                     </div>

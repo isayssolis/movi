@@ -29,6 +29,10 @@ const CreateAccountConfirm = () => {
             ...values,
             [name]: value.charAt(0).trim(),
         });
+
+        const form = e.target.form;
+        const index = [...form].indexOf(e.target);
+        form.elements[index + 1].focus();
     };
 
     const validate = ()=> {
@@ -47,7 +51,7 @@ const CreateAccountConfirm = () => {
     return(
         <div className="container-fluid h-100 fade-in d-flex flex-column">
             <div className="row justify-content-md-center mt-5">
-                <div className="col-sm-12 col-md-6 col-lg-5 mt-5 mb-5">
+                <div className="col-sm-12 col-md-6 col-lg-5 col-xl-4 col-xxl-3 mt-5 mb-5">
                     <div className="text-center bold mb-4">
                         <h1>Para crear tu cuenta, ingresa el código que te mandamos al:</h1>
                     </div>
@@ -60,11 +64,11 @@ const CreateAccountConfirm = () => {
                 </div>
             </div>
             <div className="row justify-content-sm-center">
-                    <div className="col-sm-4">
+                    <div className="col-sm-4 col-md-6 col-lg-5 col-xl-4 col-xxl-3">
                         <form onSubmit={onSubmitForm} autoComplete="off">
                             <div className="row justify-content-evenly">
-                                <div className="col-3 d-flex">
-                                    <div className="input-group input-group-lg" style={InputWidth}>
+                                <div className="col-3">
+                                    <div className="input-group input-group-lg m-0-auto" style={InputWidth}>
                                         <input type="text" className="form-control bg-light rounded text-center"
                                                name='code_1'
                                                placeholder="0"
@@ -74,7 +78,7 @@ const CreateAccountConfirm = () => {
                                     </div>
                                 </div>
                                 <div className="col-3 d-flex">
-                                    <div className="input-group input-group-lg" style={InputWidth}>
+                                    <div className="input-group input-group-lg m-0-auto" style={InputWidth}>
                                         <input type="text" className="form-control bg-light rounded text-center"
                                                name='code_2'
                                                placeholder="0"
@@ -84,7 +88,7 @@ const CreateAccountConfirm = () => {
                                     </div>
                                 </div>
                                 <div className="col-3 d-flex">
-                                    <div className="input-group input-group-lg" style={InputWidth}>
+                                    <div className="input-group input-group-lg m-0-auto" style={InputWidth}>
                                         <input type="text" className="form-control bg-light rounded text-center"
                                                name='code_3'
                                                placeholder="0"
@@ -94,7 +98,7 @@ const CreateAccountConfirm = () => {
                                     </div>
                                 </div>
                                 <div className="col-3 d-flex">
-                                    <div className="input-group input-group-lg " style={InputWidth}>
+                                    <div className="input-group input-group-lg m-0-auto" style={InputWidth}>
                                         <input type="text" className="form-control bg-light rounded text-center"
                                                name='code_4'
                                                placeholder="0"

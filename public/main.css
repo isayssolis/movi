@@ -1,6 +1,6 @@
 /*General styles and Bootstrap Overrides*/
 :root {
-    --first-color: #002355;
+    --first-color: #0b223f;
     --second-color: #8be0b2;
     --third-color: #ecf1f4;
     --text-color: #0A2240;
@@ -9,11 +9,12 @@
 }
 html{height: 100%;}
 .h-100{height: 100%;}
-body{color:var(--text-color) !important; font-family: 'Open Sans', sans-serif; height: 100%;}
+body{color:var(--text-color) !important; font-family: 'Open Sans', sans-serif; height: 100vh;}
 .logo{width: 100%; height: 25px}
 .extra-div{display: none;}
 .bold{font-weight: bolder;}
 .selectable{cursor: pointer!important; }
+.m-0-auto{margin: 0 auto;}
 /*Overrides*/
 .bg-dark{background-color: var(--first-color) !important;}
 .alert {padding: 0.1rem 1.25rem;}
@@ -114,3 +115,6 @@ a{color:var(--text-color);}
     .app-container{max-width: 50%;}
     .extra-div{display: block;}
 }
+/*@media only screen and (min-width: 1180px) and (orientation: landscape) {*/
+/*    .bg-dark{height: 100vh}*/
+/*}*/
