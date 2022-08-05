@@ -43,6 +43,7 @@ const CreateAccountConfirm = () => {
             setError(true)
         }else setError(false)
     }
+
     const onSubmitForm = (e) => {
         e.preventDefault();
         navigate("/success");

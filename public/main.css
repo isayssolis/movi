@@ -15,6 +15,11 @@ body{color:var(--text-color) !important; font-family: 'Open Sans', sans-serif; h
 .bold{font-weight: bolder;}
 .selectable{cursor: pointer!important; }
 .m-0-auto{margin: 0 auto;}
+.modal{
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+}
+
 /*Overrides*/
 .bg-dark{background-color: var(--first-color) !important;}
 .alert {padding: 0.1rem 1.25rem;}

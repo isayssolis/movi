@@ -1,26 +1,41 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {input, inputContainer, uploadedImg} from "../../css/Onboarding.style";
-
+import Webcam from "react-webcam";
+import Modal from "../Modal/Modal";
+const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user"
+};
 const Onboarding = () => {
     let location = useLocation();
     const [values, setValues] = useState({
         imgFront: '',
         imgBack: '',
-        gender: '',
     });
-    const [flow, setFlow] = React.useState(0);
+    const [flow, setFlow] = useState(0);
+    const [modal, setModal] = useState(false);
+    const [imgFace, setImgFace] = useState('');
+    const [error, setError] = useState(true);
 
-    const camera = useRef(null);
-    const [image, setImage] = useState(null);
+    useEffect(() => {
+        console.log(error)
+        validate()
+    }, [values]);
 
-
+    const validate = ()=> {
+        const valArray = Object.values(values);
+        if(valArray.includes('') && !imgFace) {
+            setError(true)
+        }else setError(false)
+    }
     const handleChange = (e) => {
         const { name, value } = e.target
         const [file] = e.target.files;
         setValues({ ...values, [name]: URL.createObjectURL(file) })
-
     }
+
     const renderFlow = () =>{
         switch (flow) {
             case 0:
@@ -33,6 +48,29 @@ const Onboarding = () => {
     }
 
 
+   const modalOpen = () => {
+       setModal(true)
+    }
+
+    const modalClose = () =>  {
+        setModal(false)
+    }
+
+
+    const webcamRef = React.useRef(null);
+    const capture = React.useCallback(
+        (e) => {
+            e.preventDefault();
+            const imageSrc = webcamRef.current.getScreenshot();
+            setImgFace(imageSrc)
+            setModal(false)
+        },
+        [webcamRef]
+    );
+    const deleteFace = (e) => {
+        e.preventDefault();
+        setImgFace('');
+    }
 
     const flow0 = () => {
         return (
@@ -47,11 +85,30 @@ const Onboarding = () => {
                     <input id="imgBack" onChange={handleChange} style={input} name="imgBack" type="file" />
                     <i className="fa-solid fa-cloud-arrow-up px-2"></i> {values.imgFront ? "Reemplazar" : "Sube el reverso de tu INE" }
                 </label>
-                <hr/>
-
-
-
-
+                <label style={inputContainer} htmlFor="imgFace" className={`rounded mt-3 ${imgFace ? "border-success" : ''}`}>
+                    {imgFace ? <img src={imgFace} className="rounded fade-in" style={uploadedImg} alt="face" /> : ''}
+                    <input id="imgFace" onClick={modalOpen} style={input} name="imgFace" type="button" />
+                    <i className="fa-solid fa-cloud-arrow-up px-2"></i> {imgFace ? "Reemplazar" : "Tómate una foto de frente" }
+                </label>
+                {modal ? <Modal handleClose={modalClose}>
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        screenshotFormat="image/jpeg"
+                        width={"100%"}
+                        videoConstraints={videoConstraints}
+                    />
+                    <div className="d-grid">
+                    <button className="btn btn-primary btn-lg"  onClick={capture} >Tomar foto</button>
+                    </div>
+                </Modal> : ''}
+                <div className="col-12">
+                    <div className="d-grid mt-3">
+                        <input className={`btn btn-lg ${error ? 'btn-secondary' : 'btn-primary'}`}
+                               disabled={error}
+                               type="submit" value="Crear cuenta" />
+                    </div>
+                </div>
             </form>
         )
     }
